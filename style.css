@@ -45,3 +45,25 @@ main {
     overflow: auto;
 }
 
+main button {
+    font-size: 1.2em;
+    font-family: "Roboto Mono";
+    float: left;
+    width: 25%;
+    border: 0;
+    padding: 1em;
+    cursor: pointer;
+    background: white;
+}
+
+main button:hover {
+    background: #cdcdcd;
+}
+
+main button:focus {
+    outline: none;
+}
+
+main button:active {
+    box-shadow: 0 0 10px #cdcdcd;
+}
