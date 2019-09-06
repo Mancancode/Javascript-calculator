@@ -63,4 +63,41 @@ window.onload = function() {
                         decimalAdded = true;
                     }
                     break;
-                
+                // Case for signing minus/plus to the last calculation
+                case '+/-':
+                    if (detailValue != '' && operators.indexOf(lastChar) == -1) {
+                        if (lastOperator == '') {
+                            if (detailValue == Math.abs(detailValue)) {
+                                detail.innerHTML = -(detailValue);
+                            } else {
+                                detail.innerHTML = Math.abs(eval(detailValue));
+                            }
+                        } else {
+                            var array     = detail.innerHTML.split(lastOperator),
+                                lastIndex = array.length - 1,
+                                newDetail = '',
+                                oldDetail = '';
+
+                            if (array[lastIndex] == Math.abs(array[lastIndex])) {
+                                newDetail = '(' + -(array[lastIndex]) + ')';
+                            } else {
+                                newDetail = Math.abs(eval(array[lastIndex]));
+                            }
+
+                            for (var i = 0; i < lastIndex; i++) {
+                                oldDetail += array[i] + lastOperator;
+                            }
+
+                            detail.innerHTML = oldDetail + newDetail;
+                        }
+                    }
+                    break;
+                // Beside of that, just displaying the key value to the calculation
+                // This is used for number
+                default:
+                    detail.innerHTML += keyValue;
+                    break;
+            }
+        }
+    }
+}
